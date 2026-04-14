@@ -4,630 +4,1156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تحليل استراتيجي — كلين لايف | سلطان القحطاني</title>
+<title>تحليل استراتيجي — كلين لايف | سلطان القحطاني CCXP®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+:root {
+  --navy:    #08131F;
+  --navy2:   #0D1E30;
+  --navy3:   #112540;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96D;
+  --gold3:   #F5E4A8;
+  --white:   #FFFFFF;
+  --offwhite:#F7F4EE;
+  --mist:    #D6CBBA;
+  --red:     #C0392B;
+  --green:   #1A7A45;
+  --blue:    #1A5276;
+  --text:    #1C1C1C;
+  --light:   #F4F1EB;
+}
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
 font-family: ‘Cairo’, sans-serif;
-background: #f4f6f9;
-color: #1a1a2e;
+background: var(–offwhite);
+color: var(–text);
 direction: rtl;
+overflow-x: hidden;
 }
 
-/* ── HERO ── */
+/* ═══════════════════════════════════════
+HERO
+═══════════════════════════════════════ */
 .hero {
-background: linear-gradient(135deg, #0D1B2A 0%, #1A3A5C 60%, #0D2B45 100%);
-color: white;
-padding: 80px 60px 70px;
+background: var(–navy);
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 text-align: center;
+padding: 80px 40px;
 position: relative;
 overflow: hidden;
 }
-.hero::before {
-content: ‘’;
+
+.hero-grid {
+position: absolute; inset: 0;
+background-image:
+linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+background-size: 60px 60px;
+}
+
+.hero-glow {
 position: absolute;
-top: -50%; left: -50%;
-width: 200%; height: 200%;
-background: radial-gradient(circle, rgba(174,214,241,0.05) 0%, transparent 60%);
+width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 65%);
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
 pointer-events: none;
 }
-.hero-badge {
-display: inline-block;
-background: rgba(174,214,241,0.15);
-border: 1px solid rgba(174,214,241,0.3);
-color: #AED6F1;
-padding: 6px 20px;
-border-radius: 30px;
-font-size: 14px;
+
+.hero-inner { position: relative; z-index: 2; max-width: 900px; }
+
+.hero-eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+border: 1px solid rgba(201,168,76,0.3);
+background: rgba(201,168,76,0.06);
+color: var(–gold);
+padding: 8px 22px;
+border-radius: 40px;
+font-size: 13px;
 font-weight: 600;
-margin-bottom: 24px;
-letter-spacing: 1px;
+letter-spacing: 1.5px;
+margin-bottom: 40px;
+animation: fadeUp 0.8s ease forwards;
 }
-.hero h1 {
-font-size: 48px;
+.hero-eyebrow::before {
+content: ‘’;
+width: 6px; height: 6px;
+background: var(–gold);
+border-radius: 50%;
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+0%,100% { opacity:1; transform:scale(1); }
+50% { opacity:0.4; transform:scale(1.5); }
+}
+
+.hero-title {
+font-size: clamp(36px, 5vw, 64px);
 font-weight: 900;
-margin-bottom: 16px;
-line-height: 1.2;
+color: var(–white);
+line-height: 1.25;
+margin-bottom: 24px;
+animation: fadeUp 0.8s 0.15s ease both;
 }
-.hero h1 span { color: #AED6F1; }
-.hero p {
-font-size: 19px;
-color: #D6EAF8;
-margin-bottom: 10px;
-max-width: 700px;
-margin-left: auto;
-margin-right: auto;
+.hero-title em {
+font-style: normal;
+color: var(–gold);
+position: relative;
 }
-.hero .author {
-font-size: 15px;
-color: rgba(214,234,248,0.7);
-margin-top: 20px;
+.hero-title em::after {
+content: ‘’;
+position: absolute;
+bottom: -4px; right: 0; left: 0;
+height: 2px;
+background: linear-gradient(to left, var(–gold), transparent);
 }
 
-/* ── CONTAINER ── */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
+.hero-sub {
+font-size: 18px;
+color: var(–mist);
+line-height: 1.8;
+max-width: 650px;
+margin: 0 auto 48px;
+animation: fadeUp 0.8s 0.3s ease both;
+}
 
-/* ── SECTION ── */
-.section { padding: 60px 0; }
-.section-label {
+.hero-author {
 display: flex;
 align-items: center;
-gap: 14px;
-margin-bottom: 36px;
+justify-content: center;
+gap: 20px;
+animation: fadeUp 0.8s 0.45s ease both;
 }
-.section-num {
-background: #1A3A5C;
-color: white;
-width: 44px; height: 44px;
+.author-avatar {
+width: 56px; height: 56px;
 border-radius: 50%;
+background: linear-gradient(135deg, var(–gold), var(–gold2));
 display: flex; align-items: center; justify-content: center;
-font-size: 18px; font-weight: 700;
-flex-shrink: 0;
+font-size: 20px; font-weight: 900; color: var(–navy);
 }
-.section-title {
-font-size: 26px;
-font-weight: 700;
-color: #1A3A5C;
+.author-info { text-align: right; }
+.author-name { font-size: 17px; font-weight: 700; color: var(–white); }
+.author-meta { font-size: 13px; color: var(–mist); }
+
+.hero-scroll {
+position: absolute;
+bottom: 36px;
+left: 50%; transform: translateX(-50%);
+display: flex; flex-direction: column;
+align-items: center; gap: 8px;
+animation: fadeUp 1s 0.8s ease both;
+}
+.hero-scroll span { font-size: 11px; color: rgba(201,168,76,0.5); letter-spacing:2px; }
+.scroll-line {
+width: 1px; height: 48px;
+background: linear-gradient(to bottom, var(–gold), transparent);
+animation: scrollLine 2s infinite;
+}
+@keyframes scrollLine {
+0% { transform: scaleY(0); transform-origin: top; }
+50% { transform: scaleY(1); transform-origin: top; }
+51% { transform: scaleY(1); transform-origin: bottom; }
+100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* ── METRIC CARDS ── */
+@keyframes fadeUp {
+from { opacity:0; transform:translateY(24px); }
+to   { opacity:1; transform:translateY(0); }
+}
+
+/* ═══════════════════════════════════════
+SECTIONS
+═══════════════════════════════════════ */
+.section {
+padding: 90px 0;
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.section.visible { opacity:1; transform:translateY(0); }
+
+.section–dark {
+background: var(–navy2);
+color: var(–white);
+}
+.section–light { background: var(–offwhite); }
+.section–white { background: var(–white); }
+.section–gold {
+background: linear-gradient(135deg, var(–navy) 0%, var(–navy3) 100%);
+color: var(–white);
+}
+
+.container {
+max-width: 1100px;
+margin: 0 auto;
+padding: 0 40px;
+}
+
+/* Section header */
+.sec-header {
+display: flex;
+align-items: flex-start;
+gap: 20px;
+margin-bottom: 52px;
+}
+.sec-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 72px;
+font-weight: 900;
+color: var(–gold);
+line-height: 0.85;
+opacity: 0.35;
+flex-shrink: 0;
+user-select: none;
+}
+.sec-titles { flex: 1; }
+.sec-label {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 3px;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 8px;
+}
+.sec-title {
+font-size: clamp(24px, 3vw, 36px);
+font-weight: 900;
+line-height: 1.3;
+}
+.section–dark .sec-title { color: var(–white); }
+.sec-line {
+width: 48px; height: 3px;
+background: var(–gold);
+margin-top: 14px;
+margin-right: 0;
+}
+
+/* ═══════════════════════════════════════
+METRIC CARDS
+═══════════════════════════════════════ */
 .metrics-grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-gap: 16px;
-margin-bottom: 28px;
+gap: 20px;
+margin-bottom: 36px;
 }
 .metric-card {
-background: white;
-border-radius: 16px;
-padding: 28px 20px;
+background: var(–white);
+border-radius: 20px;
+padding: 32px 24px;
 text-align: center;
-box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-border-top: 4px solid;
-transition: transform 0.2s;
+box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+position: relative;
+overflow: hidden;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.metric-card:hover { transform: translateY(-4px); }
-.metric-num {
-font-size: 40px;
+.metric-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+.metric-card::before {
+content: ‘’;
+position: absolute;
+top: 0; right: 0; left: 0;
+height: 4px;
+}
+.metric-card.red::before { background: linear-gradient(to left, var(–red), #E74C3C); }
+.metric-card.orange::before { background: linear-gradient(to left, #E67E22, #F39C12); }
+.metric-card.blue::before { background: linear-gradient(to left, var(–blue), #2980B9); }
+.metric-card.green::before { background: linear-gradient(to left, var(–green), #27AE60); }
+.metric-card.gold::before { background: linear-gradient(to left, var(–gold), var(–gold2)); }
+.metric-card.purple::before { background: linear-gradient(to left, #7D3C98, #A569BD); }
+.metric-card.navy::before { background: linear-gradient(to left, var(–navy), var(–navy3)); }
+
+.m-num {
+font-size: 44px;
 font-weight: 900;
-margin-bottom: 8px;
+line-height: 1;
+margin-bottom: 10px;
+}
+.m-num.red { color: var(–red); }
+.m-num.orange { color: #E67E22; }
+.m-num.blue { color: var(–blue); }
+.m-num.green { color: var(–green); }
+.m-num.gold { color: var(–gold); }
+.m-num.purple { color: #7D3C98; }
+.m-num.navy { color: var(–navy); }
+.m-label { font-size: 14px; font-weight: 600; color: #444; margin-bottom: 6px; }
+.m-sub { font-size: 12px; color: #999; line-height: 1.4; }
+
+/* ═══════════════════════════════════════
+CALLOUT BOX
+═══════════════════════════════════════ */
+.callout {
+border-radius: 16px;
+padding: 28px 32px;
+margin-top: 24px;
+position: relative;
+overflow: hidden;
+}
+.callout::before {
+content: ‘’;
+position: absolute;
+right: 0; top: 0; bottom: 0;
+width: 5px;
+}
+.callout.red-c { background: #FFF5F5; }
+.callout.red-c::before { background: var(–red); }
+.callout.blue-c { background: #EEF6FF; }
+.callout.blue-c::before { background: var(–blue); }
+.callout.gold-c { background: #FFFBF0; border: 1px solid rgba(201,168,76,0.2); }
+.callout.gold-c::before { background: var(–gold); }
+.callout.green-c { background: #F0FFF6; }
+.callout.green-c::before { background: var(–green); }
+.callout p { font-size: 16px; line-height: 1.8; color: #333; }
+.callout p strong { font-weight: 700; }
+.callout.red-c strong { color: var(–red); }
+.callout.blue-c strong { color: var(–blue); }
+.callout.gold-c strong { color: #8B6914; }
+.callout.green-c strong { color: var(–green); }
+
+/* Stat strip */
+.stat-strip {
+display: flex;
+align-items: center;
+gap: 24px;
+background: var(–white);
+border-radius: 16px;
+padding: 24px 28px;
+margin-top: 20px;
+box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+}
+.stat-big {
+font-size: 48px;
+font-weight: 900;
+flex-shrink: 0;
 line-height: 1;
 }
-.metric-label {
-font-size: 14px;
-color: #555;
-font-weight: 600;
-margin-bottom: 6px;
-}
-.metric-sub {
-font-size: 12px;
-color: #999;
-}
-.red { color: #C0392B; border-color: #C0392B; }
-.orange { color: #E67E22; border-color: #E67E22; }
-.blue { color: #2980B9; border-color: #2980B9; }
-.green { color: #1A8A4A; border-color: #1A8A4A; }
-.purple { color: #7D3C98; border-color: #7D3C98; }
-.navy { color: #1A3A5C; border-color: #1A3A5C; }
+.stat-strip.blue-s .stat-big { color: var(–blue); }
+.stat-strip.gold-s .stat-big { color: var(–gold); }
+.stat-strip.green-s .stat-big { color: var(–green); }
+.stat-text { font-size: 15px; color: #444; line-height: 1.7; }
+.stat-text strong { color: var(–navy); }
 
-/* ── HIGHLIGHT BOX ── */
-.highlight {
-background: white;
-border-right: 5px solid #C0392B;
-border-radius: 12px;
-padding: 20px 24px;
-margin-top: 16px;
-box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-font-size: 17px;
-line-height: 1.7;
+/* ═══════════════════════════════════════
+TWO COLUMN
+═══════════════════════════════════════ */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.col-panel {
+border-radius: 20px;
+padding: 32px 28px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
-.highlight strong { color: #C0392B; }
-.highlight.blue-border { border-color: #1A5276; }
-.highlight.blue-border strong { color: #1A5276; }
-.highlight.purple-border { border-color: #6C3483; }
-.highlight.purple-border strong { color: #6C3483; }
-.highlight.green-border { border-color: #117A65; }
-.highlight.green-border strong { color: #117A65; }
-
-/* ── TWO COL ── */
-.two-col {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 20px;
-margin-top: 20px;
-}
-.col-card {
-background: white;
-border-radius: 16px;
-padding: 28px 24px;
-box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-}
-.col-card h3 {
+.col-panel.red-p { background: #FFF8F8; border-top: 4px solid var(–red); }
+.col-panel.green-p { background: #F4FFF8; border-top: 4px solid var(–green); }
+.col-panel h3 {
 font-size: 17px;
 font-weight: 700;
-margin-bottom: 18px;
-padding-bottom: 12px;
-border-bottom: 2px solid;
+margin-bottom: 20px;
+padding-bottom: 14px;
+border-bottom: 1px solid rgba(0,0,0,0.07);
 }
-.col-card.red-col h3 { color: #C0392B; border-color: #FDECEA; }
-.col-card.green-col h3 { color: #1A8A4A; border-color: #E8F5E9; }
-.col-card.red-col { background: #FFFAFA; }
-.col-card.green-col { background: #F0FFF5; }
-
+.col-panel.red-p h3 { color: var(–red); }
+.col-panel.green-p h3 { color: var(–green); }
 .col-item {
 display: flex;
 align-items: flex-start;
-gap: 10px;
-margin-bottom: 12px;
-font-size: 15px;
+gap: 12px;
+margin-bottom: 14px;
+font-size: 14.5px;
 line-height: 1.6;
 color: #333;
 }
-.col-item .dot {
-width: 8px; height: 8px;
+.dot {
+width: 7px; height: 7px;
 border-radius: 50%;
 flex-shrink: 0;
 margin-top: 7px;
 }
-.red-dot { background: #C0392B; }
-.green-dot { background: #1A8A4A; }
+.dot.r { background: var(–red); }
+.dot.g { background: var(–green); }
 
-/* ── FLYWHEEL ── */
-.flywheel-box {
-background: linear-gradient(135deg, #F5EEFF, #EEF4FF);
-border: 2px solid #D7BDE2;
-border-radius: 20px;
-padding: 36px 40px;
+/* ═══════════════════════════════════════
+FLYWHEEL
+═══════════════════════════════════════ */
+.flywheel-wrap {
+background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02));
+border: 1px solid rgba(201,168,76,0.2);
+border-radius: 24px;
+padding: 48px 40px;
 text-align: center;
-margin-bottom: 28px;
-}
-.flywheel-text {
-font-size: 20px;
-font-weight: 700;
-color: #6C3483;
-line-height: 1.8;
-}
-.flywheel-sub {
-font-size: 14px;
-color: #999;
-margin-top: 10px;
-font-style: italic;
-}
-.flywheel-arrow { color: #A569BD; font-size: 18px; margin: 0 4px; }
-
-/* ── NUMBERS ROW ── */
-.numbers-row {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 16px;
-margin-top: 20px;
-}
-.number-item {
-background: white;
-border-radius: 14px;
-padding: 24px 20px;
-text-align: center;
-box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-}
-.number-item .n { font-size: 28px; font-weight: 900; color: #6C3483; }
-.number-item .l { font-size: 14px; color: #555; margin-top: 6px; line-height: 1.5; }
-
-/* ── 90 DAYS ── */
-.days-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 0;
-border-radius: 20px;
+position: relative;
 overflow: hidden;
-box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+}
+.flywheel-wrap::before {
+content: ‘∞’;
+position: absolute;
+font-size: 300px;
+color: rgba(201,168,76,0.04);
+top: 50%; left: 50%;
+transform: translate(-50%,-50%);
+pointer-events: none;
+font-family: ‘Playfair Display’, serif;
+}
+.flywheel-nodes {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 8px;
+position: relative;
+z-index: 2;
+}
+.fw-node {
+background: rgba(201,168,76,0.12);
+border: 1px solid rgba(201,168,76,0.25);
+color: var(–gold2);
+padding: 10px 18px;
+border-radius: 40px;
+font-size: 15px;
+font-weight: 700;
+}
+.fw-arrow { color: var(–gold); font-size: 20px; opacity: 0.6; }
+.flywheel-sub {
+margin-top: 20px;
+font-size: 14px;
+color: rgba(201,168,76,0.6);
+font-style: italic;
+position: relative; z-index: 2;
+}
+
+/* Numbers 3-grid */
+.num-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
+.num-card {
+background: rgba(255,255,255,0.05);
+border: 1px solid rgba(201,168,76,0.15);
+border-radius: 18px;
+padding: 28px 20px;
+text-align: center;
+}
+.num-card .n { font-size: 36px; font-weight: 900; color: var(–gold2); }
+.num-card .l { font-size: 13px; color: var(–mist); margin-top: 8px; line-height: 1.5; }
+
+/* ═══════════════════════════════════════
+DEPARTMENTS GRID
+═══════════════════════════════════════ */
+.dept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.dept-card {
+background: var(–white);
+border-radius: 20px;
+padding: 32px 28px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+position: relative;
+overflow: hidden;
+transition: transform 0.3s ease;
+}
+.dept-card:hover { transform: translateY(-4px); }
+.dept-card::after {
+content: ‘’;
+position: absolute;
+bottom: 0; right: 0; left: 0;
+height: 3px;
+}
+.dept-card.d1::after { background: linear-gradient(to left, var(–blue), #5DADE2); }
+.dept-card.d2::after { background: linear-gradient(to left, var(–green), #2ECC71); }
+.dept-card.d3::after { background: linear-gradient(to left, #E67E22, #F39C12); }
+.dept-card.d4::after { background: linear-gradient(to left, #7D3C98, #A569BD); }
+.dept-icon { font-size: 36px; margin-bottom: 16px; }
+.dept-title {
+font-size: 17px; font-weight: 700;
+margin-bottom: 12px;
+}
+.dept-card.d1 .dept-title { color: var(–blue); }
+.dept-card.d2 .dept-title { color: var(–green); }
+.dept-card.d3 .dept-title { color: #E67E22; }
+.dept-card.d4 .dept-title { color: #7D3C98; }
+.dept-text { font-size: 14px; color: #555; line-height: 1.75; }
+
+/* ═══════════════════════════════════════
+TRUST SECTION (special styling)
+═══════════════════════════════════════ */
+.trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+.trust-card {
+border-radius: 20px;
+padding: 36px 28px;
+position: relative;
+overflow: hidden;
+}
+.trust-card.tc1 {
+background: linear-gradient(135deg, #FFF8EE, #FFF3E0);
+border: 1px solid rgba(201,168,76,0.2);
+}
+.trust-card.tc2 {
+background: linear-gradient(135deg, #F0F8FF, #E8F4FD);
+border: 1px solid rgba(26,82,118,0.15);
+}
+.trust-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 80px;
+font-weight: 900;
+line-height: 0.9;
+margin-bottom: 16px;
+opacity: 0.15;
+position: absolute;
+left: 20px;
+top: 20px;
+}
+.tc1 .trust-num { color: var(–gold); }
+.tc2 .trust-num { color: var(–blue); }
+.trust-card h3 {
+font-size: 18px;
+font-weight: 700;
+margin-bottom: 12px;
+position: relative;
+}
+.tc1 h3 { color: #8B6914; }
+.tc2 h3 { color: var(–blue); }
+.trust-card p {
+font-size: 14.5px;
+color: #444;
+line-height: 1.75;
+position: relative;
+}
+.trust-quote {
+background: var(–white);
+border-radius: 12px;
+padding: 20px 24px;
+margin-top: 16px;
+font-size: 14px;
+color: #333;
+line-height: 1.7;
+font-style: italic;
+border-right: 3px solid var(–gold);
+position: relative;
+}
+.tc2 .trust-quote { border-color: var(–blue); }
+
+/* ═══════════════════════════════════════
+90 DAYS
+═══════════════════════════════════════ */
+.days-wrap {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+border-radius: 24px;
+overflow: hidden;
+box-shadow: 0 8px 40px rgba(0,0,0,0.15);
 }
 .day-col { }
-.day-header {
-padding: 20px;
+.day-head {
+padding: 24px 22px;
 text-align: center;
-font-size: 16px;
+}
+.day-head .day-period {
+font-size: 11px;
+letter-spacing: 2px;
 font-weight: 700;
+margin-bottom: 6px;
+opacity: 0.7;
+}
+.day-head .day-mode {
+font-size: 18px;
+font-weight: 900;
 color: white;
 }
-.day-1 .day-header { background: #1A5276; }
-.day-2 .day-header { background: #117A65; }
-.day-3 .day-header { background: #6C3483; }
+.day-head .day-icon { font-size: 28px; margin-bottom: 8px; }
+.d1-head { background: #112540; }
+.d2-head { background: #0D3325; }
+.d3-head { background: #200D35; }
 .day-body {
-background: white;
-padding: 24px 20px;
-min-height: 200px;
+background: var(–white);
+padding: 28px 22px;
+min-height: 240px;
 }
 .day-item {
 display: flex;
 align-items: flex-start;
-gap: 8px;
-margin-bottom: 12px;
+gap: 10px;
+margin-bottom: 14px;
 font-size: 14px;
-line-height: 1.5;
+line-height: 1.55;
 color: #333;
 }
-.day-icon { flex-shrink: 0; font-size: 12px; margin-top: 3px; }
-
-/* ── QUOTE SECTION ── */
-.quote-section {
-background: linear-gradient(135deg, #0D1B2A, #1A3A5C);
-padding: 60px;
-text-align: center;
-margin-top: 60px;
-}
-.quote-mark { font-size: 80px; color: rgba(174,214,241,0.2); line-height: 0.5; margin-bottom: 20px; }
-.quote-text {
-font-size: 26px;
+.day-bullet {
+width: 20px; height: 20px;
+border-radius: 50%;
+flex-shrink: 0;
+display: flex; align-items: center; justify-content: center;
+font-size: 10px;
 font-weight: 700;
 color: white;
+margin-top: 1px;
+}
+.b1 { background: var(–blue); }
+.b2 { background: var(–green); }
+.b3 { background: #7D3C98; }
+
+/* ═══════════════════════════════════════
+FINAL QUOTE
+═══════════════════════════════════════ */
+.final-section {
+background: var(–navy);
+padding: 100px 40px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.final-section::before {
+content: ‘’;
+position: absolute; inset: 0;
+background-image:
+linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+background-size: 80px 80px;
+}
+.final-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+.final-mark {
+font-family: ‘Playfair Display’, serif;
+font-size: 100px;
+color: var(–gold);
+opacity: 0.2;
+line-height: 0.6;
+margin-bottom: 32px;
+}
+.final-quote {
+font-size: clamp(20px, 2.5vw, 30px);
+font-weight: 700;
+color: var(–white);
 line-height: 1.7;
-max-width: 800px;
-margin: 0 auto 20px;
+margin-bottom: 32px;
 }
-.quote-text span { color: #AED6F1; }
-.quote-author { font-size: 15px; color: rgba(214,234,248,0.6); margin-top: 20px; }
-
-/* ── STAT CALLOUT ── */
-.stat-callout {
-background: white;
-border-radius: 16px;
-padding: 20px 24px;
-margin-top: 16px;
-box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+.final-quote em {
+font-style: normal;
+color: var(–gold2);
+}
+.final-divider {
+width: 80px; height: 1px;
+background: rgba(201,168,76,0.3);
+margin: 32px auto;
+}
+.final-author { font-size: 14px; color: var(–mist); line-height: 2; }
+.final-name { font-size: 20px; font-weight: 700; color: var(–white); margin-bottom: 4px; }
+.final-tags {
 display: flex;
-align-items: center;
-gap: 16px;
+justify-content: center;
+gap: 12px;
+flex-wrap: wrap;
+margin-top: 20px;
 }
-.stat-callout .stat-num {
-font-size: 36px;
-font-weight: 900;
-flex-shrink: 0;
-}
-.stat-callout .stat-text { font-size: 15px; color: #444; line-height: 1.6; }
-.stat-callout .stat-text strong { color: #1A3A5C; }
-
-/* ── DIVIDER ── */
-.divider {
-height: 1px;
-background: linear-gradient(to left, transparent, #DDDDDD, transparent);
-margin: 0;
+.final-tag {
+border: 1px solid rgba(201,168,76,0.25);
+color: var(–gold);
+padding: 6px 16px;
+border-radius: 30px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.5px;
 }
 
-/* ── SECTION BG ALT ── */
-.bg-light { background: #ffffff; }
-.bg-alt { background: #f8fafc; }
-
+/* ═══════════════════════════════════════
+RESPONSIVE
+═══════════════════════════════════════ */
 @media (max-width: 768px) {
 .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-.two-col { grid-template-columns: 1fr; }
-.numbers-row { grid-template-columns: 1fr; }
-.days-grid { grid-template-columns: 1fr; }
-.hero h1 { font-size: 32px; }
-.hero { padding: 50px 24px; }
-.container { padding: 0 16px; }
-.quote-section { padding: 40px 24px; }
-.quote-text { font-size: 20px; }
+.two-col, .trust-grid, .dept-grid, .num-grid, .days-wrap { grid-template-columns: 1fr; }
+.container { padding: 0 20px; }
+.section { padding: 60px 0; }
+.sec-num { font-size: 48px; }
+.hero { min-height: auto; padding: 80px 24px 100px; }
 }
 </style>
 
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ══════════════════ HERO ══════════════════ -->
 
 <div class="hero">
-  <div class="hero-badge">تحليل استراتيجي مقدَّم لمدير عام التسويق</div>
-  <h1>كيف تُحوّل <span>تجربة العميل</span><br>إلى محرك نمو حقيقي في كلين لايف</h1>
-  <p>تحليل مبني على البيانات المالية المُدرجة لعام ٢٠٢٥ وبيانات السوق السعودي</p>
-  <div class="author">سلطان القحطاني &nbsp;·&nbsp; CCXP® &nbsp;·&nbsp; +966 59 906 1969 &nbsp;·&nbsp; SultanFq.career@gmail.com</div>
-</div>
-
-<!-- SECTION 1: REALITY -->
-
-<div class="bg-light">
-<div class="container">
-<div class="section">
-  <div class="section-label">
-    <div class="section-num">١</div>
-    <div class="section-title">الواقع الحالي — ماذا تقول أرقام ٢٠٢٥؟</div>
-  </div>
-
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <div class="metric-num red">−33%</div>
-      <div class="metric-label">تراجع صافي الربح</div>
-      <div class="metric-sub">من 11.4M إلى 7.7M ريال</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num orange">+35%</div>
-      <div class="metric-label">ارتفاع المصاريف التسويقية</div>
-      <div class="metric-sub">من 3.1M إلى 4.2M ريال</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num red">−63%</div>
-      <div class="metric-label">تراجع أرباح النصف الثاني</div>
-      <div class="metric-sub">من 4.6M إلى 1.7M ريال</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num blue">+38%</div>
-      <div class="metric-label">نمو الأصول</div>
-      <div class="metric-sub">استثمار ضخم بدون عائد موازٍ</div>
-    </div>
-  </div>
-
-  <div class="highlight">
-    <strong>الخلاصة:</strong> كلما صُرف أكثر على الاستحواذ، كلما تآكلت الأرباح. هذه ليست مشكلة تسويق — هذه مشكلة <strong>نموذج استحواذ</strong>. والحل ليس في صرف المزيد على الإعلانات، بل في استثمار الأصل الأهم الذي تملكه الشركة حالياً.
-  </div>
-
-  <div class="stat-callout" style="margin-top:20px;">
-    <div class="stat-num" style="color:#1A8A4A;">5%</div>
-    <div class="stat-text">زيادة الاستبقاء (Retention) بنسبة 5% فقط ترفع الأرباح بنسبة تتراوح بين <strong>25% إلى 95%</strong> — هذا ما تثبته دراسات هارفارد للأعمال. الاستثمار في CX ليس تكلفة، هو ضخ مباشر في هامش الربح.</div>
-  </div>
-</div>
-</div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SECTION 2: PARADOX -->
-
-<div class="bg-alt">
-<div class="container">
-<div class="section">
-  <div class="section-label">
-    <div class="section-num" style="background:#1A5276;">٢</div>
-    <div class="section-title" style="color:#1A5276;">المفارقة الاستراتيجية — الأصل الصامت</div>
-  </div>
-
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <div class="metric-num navy">250K</div>
-      <div class="metric-label">عميل حالي</div>
-      <div class="metric-sub">قاعدة ضخمة غير مستغلة</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num green">91%</div>
-      <div class="metric-label">نسبة الرضا</div>
-      <div class="metric-sub">9 من كل 10 عملاء راضون</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num red">SAR 0</div>
-      <div class="metric-label">تكلفة الإحالة الحالية</div>
-      <div class="metric-sub">لا يوجد برنامج إحالة منظم</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num purple">3:1</div>
-      <div class="metric-label">نسبة LTV:CAC المستهدفة</div>
-      <div class="metric-sub">المعيار العالمي للاستدامة</div>
-    </div>
-  </div>
-
-  <div class="highlight blue-border">
-    <strong>السؤال الجوهري:</strong> إذا كان 91% من العملاء راضين، لماذا نرفع ميزانية الاستحواذ 35%؟<br><br>
-    <strong>الجواب:</strong> لأننا لا نملك نظاماً يحول الرضا إلى تكرار وإحالة. العميل يرضى ثم يختفي — ونحن لا نعلم لماذا.
-  </div>
-
-  <div class="stat-callout" style="margin-top:20px; border-right: 4px solid #1A5276;">
-    <div class="stat-num" style="color:#1A5276;">4.5×</div>
-    <div class="stat-text">العميل السعودي يثق في تجربة عميل آخر بـ <strong>4.5 ضعف</strong> ثقته في الإعلان الرسمي. لدينا 250,000 عميل راضٍ يمكن تحويلهم إلى آلة إعلانية مجانية — لكن هذا يحتاج هندسة CX لا حملة مدفوعة.</div>
-  </div>
-</div>
-</div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SECTION 3: GAPS -->
-
-<div class="bg-light">
-<div class="container">
-<div class="section">
-  <div class="section-label">
-    <div class="section-num" style="background:#117A65;">٣</div>
-    <div class="section-title" style="color:#117A65;">فجوات الفرصة — أين يتسرب المال؟</div>
-  </div>
-
-  <div class="two-col">
-    <div class="col-card red-col">
-      <h3>❌ الفجوات الحالية</h3>
-      <div class="col-item"><div class="dot red-dot"></div>لا متابعة بعد الخدمة — العميل يغادر بصمت ونحن لا نعلم</div>
-      <div class="col-item"><div class="dot red-dot"></div>لا قياس لـ NPS أو CSAT — نطير بدون بوصلة حقيقية</div>
-      <div class="col-item"><div class="dot red-dot"></div>لا برنامج إحالة — 250K عميل راضٍ غير مُفعَّل</div>
-      <div class="col-item"><div class="dot red-dot"></div>لا upsell منظم — العميل لا يعرف أن لديكم 30+ خدمة</div>
-      <div class="col-item"><div class="dot red-dot"></div>Instagram ER = 1.81% فقط — TikTok يحقق 2.3× أكثر تفاعلاً</div>
-      <div class="col-item"><div class="dot red-dot"></div>الحجز عبر واتساب فقط — Justlife وUrban Company لديهم تطبيق</div>
-    </div>
-    <div class="col-card green-col">
-      <h3>✅ الفرصة المتاحة</h3>
-      <div class="col-item"><div class="dot green-dot"></div>متابعة تلقائية 24 ساعة بعد كل خدمة — اكتشاف المشاكل قبل الرحيل</div>
-      <div class="col-item"><div class="dot green-dot"></div>NPS baseline في 30 يوماً — أول مقياس حقيقي لرضا العملاء</div>
-      <div class="col-item"><div class="dot green-dot"></div>برنامج إحالة: 250K عميل = استحواذ بتكلفة صفر</div>
-      <div class="col-item"><div class="dot green-dot"></div>upsell ذكي: تنظيف ← مكافحة ← صيانة ← نقل أثاث</div>
-      <div class="col-item"><div class="dot green-dot"></div>محتوى Clean-Tok: UGC حقيقي يبني ثقة لا يستطيع إعلان اختراقها</div>
-      <div class="col-item"><div class="dot green-dot"></div>ربط CX بالتسويق والعمليات والمبيعات — صوت العميل في كل قرار</div>
-    </div>
-  </div>
-
-  <div class="highlight green-border" style="margin-top:20px;">
-    <strong>التسويق يطلق الوعد — CX هي من تُوفي به.</strong> كل ريال تسويقي تصرفه يعود بقيمة مضاعفة فقط إذا كانت تجربة ما بعد البيع ترقى لمستوى الوعد.
-  </div>
-</div>
-</div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SECTION 4: FLYWHEEL -->
-
-<div class="bg-alt">
-<div class="container">
-<div class="section">
-  <div class="section-label">
-    <div class="section-num" style="background:#6C3483;">٤</div>
-    <div class="section-title" style="color:#6C3483;">محرك النمو — من الرضا إلى الإيراد</div>
-  </div>
-
-  <div class="flywheel-box">
-    <div class="flywheel-text">
-      CX ممتازة
-      <span class="flywheel-arrow">→</span>
-      Retention ↑
-      <span class="flywheel-arrow">→</span>
-      LTV ↑
-      <span class="flywheel-arrow">→</span>
-      إحالة عضوية
-      <span class="flywheel-arrow">→</span>
-      CAC ↓
-      <span class="flywheel-arrow">→</span>
-      هامش ربح ↑
-      <span class="flywheel-arrow">→</span>
-      CX أفضل
-    </div>
-    <div class="flywheel-sub">هذا المحرك لا يتوقف — كل دورة تُقلل الاعتماد على الإعلان المدفوع</div>
-  </div>
-
-  <div class="numbers-row">
-    <div class="number-item">
-      <div class="n">~225K</div>
-      <div class="l">ريال يمكن توفيره سنوياً بإيقاف 50% من تسرب العملاء</div>
-    </div>
-    <div class="number-item">
-      <div class="n">25,000</div>
-      <div class="l">عميل جديد محتمل إذا أحال 10% من العملاء الراضين شخصاً واحداً فقط</div>
-    </div>
-    <div class="number-item">
-      <div class="n">>100%</div>
-      <div class="l">العائد على الاستثمار في هذا الدور (204K ريال/سنة) خلال السنة الأولى</div>
-    </div>
-  </div>
-
-  <div class="highlight purple-border" style="margin-top:24px;">
-    <strong>الاستثمار المضمون:</strong> أنتم لا توظفون أخصائي تجربة عميل — أنتم تستثمرون في قناة نمو تحول الرضا الصامت إلى إيراد حقيقي. كل ريال راتب يرجع أضعافه من خلال تقليل الاعتماد على الإعلان المدفوع.
-  </div>
-</div>
-</div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SECTION 5: CX + DEPARTMENTS -->
-
-<div class="bg-light">
-<div class="container">
-<div class="section">
-  <div class="section-label">
-    <div class="section-num" style="background:#1A5276;">٥</div>
-    <div class="section-title" style="color:#1A5276;">كيف يربط CX كل أقسام الشركة؟</div>
-  </div>
-
-  <div class="metrics-grid">
-    <div class="metric-card" style="border-top-color:#1A5276; text-align:right; padding:24px;">
-      <div style="font-size:28px; margin-bottom:10px;">📢</div>
-      <div style="font-weight:700; color:#1A5276; font-size:16px; margin-bottom:10px;">التسويق</div>
-      <div style="font-size:14px; color:#555; line-height:1.7;">بيانات العميل الحقيقية → hooks تحول وتبني ثقة. محتوى Clean-Tok من العملاء أقوى من أي إعلان مدفوع. ER أعلى بـ 2.3× على TikTok.</div>
-    </div>
-    <div class="metric-card" style="border-top-color:#117A65; text-align:right; padding:24px;">
-      <div style="font-size:28px; margin-bottom:10px;">⚙️</div>
-      <div style="font-weight:700; color:#117A65; font-size:16px; margin-bottom:10px;">العمليات</div>
-      <div style="font-size:14px; color:#555; line-height:1.7;">كل شكوى متكررة = عملية مكسورة. CX يترجم "العميل غير راضٍ عن التوقيت" إلى "نحتاج 30 دقيقة buffer في الجدولة". الإصلاح قبل الأزمة.</div>
-    </div>
-    <div class="metric-card" style="border-top-color:#E67E22; text-align:right; padding:24px;">
-      <div style="font-size:28px; margin-bottom:10px;">💼</div>
-      <div style="font-weight:700; color:#E67E22; font-size:16px; margin-bottom:10px;">المبيعات والحجز</div>
-      <div style="font-size:14px; color:#555; line-height:1.7;">نعرف أي خدمة تحقق أعلى تكرار وأي مدينة أعلى churn. الفريق يبيع أذكى لا أكثر. Upsell تلقائي يرفع LTV بلا تكلفة.</div>
-    </div>
-    <div class="metric-card" style="border-top-color:#7D3C98; text-align:right; padding:24px;">
-      <div style="font-size:28px; margin-bottom:10px;">📊</div>
-      <div style="font-weight:700; color:#7D3C98; font-size:16px; margin-bottom:10px;">القيادة والمستثمرون</div>
-      <div style="font-size:14px; color:#555; line-height:1.7;">تقرير شهري: retention rate، NPS trend، repeat booking %، top friction points. شركة مُدرجة في نوما تحتاج هذه الأرقام لتقديم قصة مقنعة للمستثمرين.</div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SECTION 6: 90 DAYS -->
-
-<div class="bg-alt">
-<div class="container">
-<div class="section">
-  <div class="section-label">
-    <div class="section-num" style="background:#117A65;">٦</div>
-    <div class="section-title" style="color:#117A65;">الخطة — ماذا يحدث في أول 90 يوماً؟</div>
-  </div>
-
-  <div class="days-grid">
-    <div class="day-col day-1">
-      <div class="day-header">🎧 اليوم ١ – ٣٠ &nbsp;|&nbsp; استماع</div>
-      <div class="day-body">
-        <div class="day-item"><span class="day-icon" style="color:#1A5276;">◀</span>خريطة رحلة العميل الكاملة من أول تواصل حتى ما بعد الخدمة</div>
-        <div class="day-item"><span class="day-icon" style="color:#1A5276;">◀</span>أول استبيان NPS عبر واتساب — baseline حقيقي خلال 30 يوماً</div>
-        <div class="day-item"><span class="day-icon" style="color:#1A5276;">◀</span>تحليل 6 أشهر من تعليقات إنستغرام — 302K فرصة بيانات</div>
-        <div class="day-item"><span class="day-icon" style="color:#1A5276;">◀</span>تحديد 3 نقاط احتكاك رئيسية بالبيانات لا بالافتراضات</div>
-      </div>
-    </div>
-    <div class="day-col day-2">
-      <div class="day-header">🔧 اليوم ٣١ – ٦٠ &nbsp;|&nbsp; إصلاح</div>
-      <div class="day-body">
-        <div class="day-item"><span class="day-icon" style="color:#117A65;">◀</span>متابعة تلقائية بعد كل خدمة — إنهاء الصمت ما بعد الزيارة</div>
-        <div class="day-item"><span class="day-icon" style="color:#117A65;">◀</span>رسالة upsell ذكية: "جربت تنظيف السجاد؟ عندنا مكافحة الحشرات بخصم"</div>
-        <div class="day-item"><span class="day-icon" style="color:#117A65;">◀</span>أول dashboard لصحة العملاء — مشترك مع التسويق والعمليات</div>
-        <div class="day-item"><span class="day-icon" style="color:#117A65;">◀</span>بروتوكول الزيارة — الزي، الالتزام، جودة الأدوات = وعد تسويقي حقيقي</div>
-      </div>
-    </div>
-    <div class="day-col day-3">
-      <div class="day-header">🚀 اليوم ٦١ – ٩٠ &nbsp;|&nbsp; بناء</div>
-      <div class="day-body">
-        <div class="day-item"><span class="day-icon" style="color:#6C3483;">◀</span>برنامج الإحالة يعمل: "رشّح صديقاً واحصل على 50 ريال خصم"</div>
-        <div class="day-item"><span class="day-icon" style="color:#6C3483;">◀</span>أول QBR مع القيادة: NPS baseline، نقاط التسرب، الخطة القادمة</div>
-        <div class="day-item"><span class="day-icon" style="color:#6C3483;">◀</span>استراتيجية Clean-Tok — تفعيل العملاء الراضين كسفراء محتوى</div>
-        <div class="day-item"><span class="day-icon" style="color:#6C3483;">◀</span>نموذج CX قابل للتوسع على كل المدن الـ 25</div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">تحليل استراتيجي مُقدَّم لمدير عام التسويق</div>
+    <h1 class="hero-title">
+      كيف تُحوِّل <em>تجربة العميل</em><br>
+      إلى محرك نمو حقيقي في كلين لايف
+    </h1>
+    <p class="hero-sub">
+      تحليل مبني على البيانات المالية المُدرجة لعام ٢٠٢٥ وبيانات السوق السعودي —
+      يُثبت أن CX هي الحل لتحديات الربحية الحالية.
+    </p>
+    <div class="hero-author">
+      <div class="author-avatar">س</div>
+      <div class="author-info">
+        <div class="author-name">سلطان القحطاني &nbsp;·&nbsp; CCXP®</div>
+        <div class="author-meta">+966 59 906 1969 &nbsp;·&nbsp; SultanFq.career@gmail.com</div>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
-
-<!-- QUOTE / FOOTER -->
-
-<div class="quote-section">
-  <div class="quote-mark">"</div>
-  <div class="quote-text">
-    لستُ هنا لإدارة شكاوى.<br>
-    <span>أنا هنا لأحوّل 250,000 عميل راضٍ<br>إلى محرك نمو يُغني عن الإعلان.</span>
-  </div>
-  <div style="height:1px; background:rgba(255,255,255,0.1); max-width:400px; margin:30px auto;"></div>
-  <div class="quote-author">
-    سلطان القحطاني &nbsp;·&nbsp; CCXP® Certified &nbsp;·&nbsp; 7+ سنوات &nbsp;·&nbsp; Amazon · LG · Alaan · Zid<br>
-    +966 59 906 1969 &nbsp;·&nbsp; SultanFq.career@gmail.com
+  <div class="hero-scroll">
+    <span>تمرير</span>
+    <div class="scroll-line"></div>
   </div>
 </div>
+
+<!-- ══════════════════ 1: REALITY ══════════════════ -->
+
+<div class="section section--light" id="s1">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-titles">
+        <div class="sec-label">الواقع المالي</div>
+        <div class="sec-title">ماذا تقول أرقام ٢٠٢٥؟</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="metrics-grid">
+  <div class="metric-card red">
+    <div class="m-num red">−33%</div>
+    <div class="m-label">تراجع صافي الربح</div>
+    <div class="m-sub">من 11.4M إلى 7.7M ريال</div>
+  </div>
+  <div class="metric-card orange">
+    <div class="m-num orange">+35%</div>
+    <div class="m-label">ارتفاع المصاريف التسويقية</div>
+    <div class="m-sub">من 3.1M إلى 4.2M ريال</div>
+  </div>
+  <div class="metric-card red">
+    <div class="m-num red">−63%</div>
+    <div class="m-label">تراجع أرباح النصف الثاني</div>
+    <div class="m-sub">من 4.6M إلى 1.7M ريال</div>
+  </div>
+  <div class="metric-card blue">
+    <div class="m-num blue">+38%</div>
+    <div class="m-label">نمو الأصول</div>
+    <div class="m-sub">استثمار ضخم بدون عائد موازٍ</div>
+  </div>
+</div>
+
+<div class="callout red-c">
+  <p><strong>الخلاصة:</strong> كلما زادت ميزانية الاستحواذ، كلما تآكلت الأرباح. هذه ليست مشكلة تسويق — هذه مشكلة <strong>نموذج استحواذ</strong>. الحل ليس في صرف المزيد، بل في استثمار الأصل الأهم الذي تملكه الشركة حالياً.</p>
+</div>
+
+<div class="stat-strip blue-s" style="margin-top:20px;">
+  <div class="stat-big">5%</div>
+  <div class="stat-text">زيادة معدل الاستبقاء (Retention) بنسبة <strong>5% فقط</strong> ترفع الأرباح بنسبة تتراوح بين <strong>25% إلى 95%</strong> — هذا ما أثبتته دراسات هارفارد للأعمال. الاستثمار في CX ليس تكلفة، هو ضخ مباشر في هامش الربح.</div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ 2: PARADOX ══════════════════ -->
+
+<div class="section section--white" id="s2">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-titles">
+        <div class="sec-label">المفارقة الاستراتيجية</div>
+        <div class="sec-title">الأصل الصامت — 250,000 عميل راضٍ لا يعملون</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="metrics-grid">
+  <div class="metric-card navy">
+    <div class="m-num navy">250K</div>
+    <div class="m-label">عميل حالي</div>
+    <div class="m-sub">قاعدة ضخمة غير مستغلة</div>
+  </div>
+  <div class="metric-card green">
+    <div class="m-num green">91%</div>
+    <div class="m-label">نسبة الرضا</div>
+    <div class="m-sub">9 من كل 10 عملاء راضون</div>
+  </div>
+  <div class="metric-card red">
+    <div class="m-num red">SAR 0</div>
+    <div class="m-label">تكلفة الإحالة الحالية</div>
+    <div class="m-sub">لا يوجد برنامج إحالة منظم</div>
+  </div>
+  <div class="metric-card gold">
+    <div class="m-num gold">3:1</div>
+    <div class="m-label">نسبة LTV:CAC المستهدفة</div>
+    <div class="m-sub">المعيار العالمي للاستدامة</div>
+  </div>
+</div>
+
+<div class="callout blue-c">
+  <p><strong>السؤال الجوهري:</strong> إذا كان 91% من العملاء راضين، لماذا نرفع ميزانية الاستحواذ 35%؟<br><br>
+  <strong>الجواب:</strong> لأننا لا نملك نظاماً يحول الرضا إلى تكرار وإحالة. العميل يرضى ثم يختفي — ونحن لا نعلم لماذا، ولا نحاول إعادته.</p>
+</div>
+
+<div class="stat-strip gold-s" style="margin-top:20px;">
+  <div class="stat-big" style="color:var(--gold);">4.5×</div>
+  <div class="stat-text">العميل السعودي يثق في تجربة عميل آخر بـ <strong>4.5 ضعف</strong> ثقته في الإعلان الرسمي. لدينا 250,000 عميل راضٍ — يمكن تحويلهم إلى <strong>آلة إعلانية مجانية</strong> تخفض الـ CAC إلى الصفر.</div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ 3: GAPS ══════════════════ -->
+
+<div class="section section--light" id="s3">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-titles">
+        <div class="sec-label">تشخيص الفجوات</div>
+        <div class="sec-title">أين يتسرب المال؟</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="two-col">
+  <div class="col-panel red-p">
+    <h3>❌ الفجوات الحالية</h3>
+    <div class="col-item"><div class="dot r"></div>لا متابعة بعد الخدمة — العميل يغادر بصمت تام</div>
+    <div class="col-item"><div class="dot r"></div>لا قياس لـ NPS أو CSAT — نطير بدون بوصلة</div>
+    <div class="col-item"><div class="dot r"></div>لا برنامج إحالة — 250K عميل راضٍ غير مُفعَّل</div>
+    <div class="col-item"><div class="dot r"></div>لا upsell منظم — 30+ خدمة لا يعرفها العميل</div>
+    <div class="col-item"><div class="dot r"></div>Instagram ER = 1.81% فقط — TikTok أعلى بـ 2.3×</div>
+    <div class="col-item"><div class="dot r"></div>الحجز عبر واتساب — المنافسون لديهم تطبيق متكامل</div>
+  </div>
+  <div class="col-panel green-p">
+    <h3>✅ الفرصة المتاحة</h3>
+    <div class="col-item"><div class="dot g"></div>متابعة تلقائية 24 ساعة — اكتشاف المشاكل قبل الرحيل</div>
+    <div class="col-item"><div class="dot g"></div>NPS baseline في 30 يوماً — أول مقياس حقيقي</div>
+    <div class="col-item"><div class="dot g"></div>برنامج إحالة — 250K عميل = عملاء جدد بتكلفة صفر</div>
+    <div class="col-item"><div class="dot g"></div>Upsell ذكي: تنظيف → مكافحة → صيانة → نقل</div>
+    <div class="col-item"><div class="dot g"></div>محتوى Clean-Tok: UGC حقيقي يبني ثقة لا إعلان</div>
+    <div class="col-item"><div class="dot g"></div>ربط CX بكل الأقسام — صوت العميل في كل قرار</div>
+  </div>
+</div>
+
+<div class="callout green-c">
+  <p><strong>التسويق يطلق الوعد — CX هي من تُوفي به.</strong> كل ريال تسويقي تصرفه يعود بقيمة مضاعفة فقط إذا كانت تجربة ما بعد البيع ترقى لمستوى الوعد.</p>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ 4: TRUST ══════════════════ -->
+
+<div class="section section--white" id="s4">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-titles">
+        <div class="sec-label">العامل الخفي</div>
+        <div class="sec-title">سيكولوجية الثقة — CX كإدارة طمأنينة</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="trust-grid">
+  <div class="trust-card tc1">
+    <div class="trust-num">80</div>
+    <h3>⚠️ 80% من متخذي القرار نساء</h3>
+    <p>الخدمة تُقدَّم داخل حرم المنزل — وهذا يعني أن "لحظة الحقيقة" تبدأ قبل بدء التنظيف. زي الفني، طريقة الدخول، الاحترام، الدقة في المواعيد — كل هذه لحظات CX تُحدد قرار إعادة الحجز.</p>
+    <div class="trust-quote">
+      سأعمل على تحويل "بروتوكول الزيارة" من إجراء تشغيلي إلى ميزة تسويقية تُباع في الإعلانات. العميل السعودي مستعد لدفع سعر أعلى مقابل الأمان والخصوصية.
+    </div>
+  </div>
+  <div class="trust-card tc2">
+    <div class="trust-num" style="color:var(--blue);">CX</div>
+    <h3>🛡️ بروتوكول الزيارة = ميزة تسويقية</h3>
+    <p>الثقة في خدمات المنزل لا تُبنى بالإعلان — تُبنى بالتجربة المتكررة والمتسقة. CX تهندس هذه التجربة لتصبح قابلة للقياس والتوسع عبر المدن الـ 25.</p>
+    <div class="trust-quote" style="border-color:var(--blue);">
+      هذا يعني أن جودة التجربة داخل المنزل هي أقوى أداة تسويقية — وأرخصها — لأنها تحول العميل الراضي إلى مُسوِّق شخصي بلا تكلفة.
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ 5: PREDICTIVE UPSELL ══════════════════ -->
+
+<div class="section section--dark" id="s5">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num" style="color:var(--gold); opacity:0.4;">05</div>
+      <div class="sec-titles">
+        <div class="sec-label" style="color:var(--gold);">الـ Upsell التنبؤي</div>
+        <div class="sec-title" style="color:var(--white);">أتمتة العائد — 30+ خدمة تنتظر التفعيل</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="metrics-grid" style="margin-bottom:36px;">
+  <div class="metric-card gold">
+    <div class="m-num gold">30+</div>
+    <div class="m-label">خدمة احترافية</div>
+    <div class="m-sub">معظم العملاء يعرفون خدمة واحدة فقط</div>
+  </div>
+  <div class="metric-card green">
+    <div class="m-num green">50%</div>
+    <div class="m-label">خصم على الصيانة الدورية</div>
+    <div class="m-sub">فرصة upsell موجودة لكن غير مفعّلة</div>
+  </div>
+  <div class="metric-card blue">
+    <div class="m-num blue">0</div>
+    <div class="m-label">نظام Upsell تلقائي حالياً</div>
+    <div class="m-sub">العميل ينتظر أن يبحث بنفسه</div>
+  </div>
+  <div class="metric-card purple">
+    <div class="m-num purple">↑ LTV</div>
+    <div class="m-label">القيمة الدائمة للعميل</div>
+    <div class="m-sub">ترتفع بلا تكلفة إعلانية جديدة</div>
+  </div>
+</div>
+
+<div style="background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.15); border-radius:20px; padding:36px 32px;">
+  <p style="font-size:17px; color:var(--gold2); font-weight:700; margin-bottom:20px;">كيف يعمل نظام الـ Upsell التنبؤي:</p>
+  <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="display:flex; align-items:center; gap:16px; background:rgba(255,255,255,0.04); border-radius:12px; padding:16px 20px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--navy);flex-shrink:0;">١</div>
+      <div style="font-size:15px;color:var(--mist);">العميل يحجز تنظيف سجاد → نسجّل تاريخه، موسمه، ومنطقته</div>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px; background:rgba(255,255,255,0.04); border-radius:12px; padding:16px 20px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--navy);flex-shrink:0;">٢</div>
+      <div style="font-size:15px;color:var(--mist);">النظام يحسب: "هذا العميل في الرياض → موسم الحشرات قادم → آخر مكافحة قبل 6 أشهر"</div>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px; background:rgba(255,255,255,0.04); border-radius:12px; padding:16px 20px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--navy);flex-shrink:0;">٣</div>
+      <div style="font-size:15px;color:var(--mist);">يرسل له عبر واتساب: "موسم الحشرات قادم — احجز الآن بخصم 50% وافر قبل أن تبدأ المشكلة"</div>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px; background:rgba(201,168,76,0.08); border-radius:12px; padding:16px 20px; border:1px solid rgba(201,168,76,0.15);">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--gold2);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--navy);flex-shrink:0;">✓</div>
+      <div style="font-size:15px;color:var(--gold2); font-weight:600;">النتيجة: LTV يرتفع تلقائياً — بدون تكلفة إعلانية جديدة</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ 6: FLYWHEEL ══════════════════ -->
+
+<div class="section section--gold" id="s6">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num" style="color:var(--gold); opacity:0.3;">06</div>
+      <div class="sec-titles">
+        <div class="sec-label" style="color:var(--gold);">محرك النمو</div>
+        <div class="sec-title" style="color:var(--white);">من الرضا إلى الإيراد — الدورة التي لا تتوقف</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="flywheel-wrap">
+  <div class="flywheel-nodes">
+    <div class="fw-node">CX ممتازة</div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node">Retention ↑</div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node">LTV ↑</div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node">إحالة عضوية</div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node">CAC ↓</div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node">هامش ربح ↑</div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node">CX أفضل</div>
+  </div>
+  <div class="flywheel-sub">هذا المحرك لا يتوقف — كل دورة تُقلل الاعتماد على الإعلان المدفوع</div>
+</div>
+
+<div class="num-grid">
+  <div class="num-card">
+    <div class="n">~225K</div>
+    <div class="l">ريال يمكن توفيره سنوياً بإيقاف 50% من تسرب العملاء</div>
+  </div>
+  <div class="num-card">
+    <div class="n">25,000</div>
+    <div class="l">عميل جديد محتمل لو أحال 10% من الراضين شخصاً واحداً فقط</div>
+  </div>
+  <div class="num-card">
+    <div class="n">>100%</div>
+    <div class="l">العائد على الاستثمار في هذا الدور (204K/سنة) خلال السنة الأولى</div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ 7: DEPARTMENTS ══════════════════ -->
+
+<div class="section section--light" id="s7">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">07</div>
+      <div class="sec-titles">
+        <div class="sec-label">التكامل المؤسسي</div>
+        <div class="sec-title">كيف يربط CX كل أقسام الشركة؟</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="dept-grid">
+  <div class="dept-card d1">
+    <div class="dept-icon">📢</div>
+    <div class="dept-title">التسويق</div>
+    <div class="dept-text">بيانات العملاء الحقيقية تحول محتوى UGC إلى hooks تحول وتبني ثقة. إذا 60% من العملاء يذكرون "الرائحة الجميلة" — هذا هو الـ hook. Clean-Tok: TikTok يحقق 2.3× تفاعل Instagram بنفس الجهد.</div>
+  </div>
+  <div class="dept-card d2">
+    <div class="dept-icon">⚙️</div>
+    <div class="dept-title">العمليات</div>
+    <div class="dept-text">كل شكوى متكررة = عملية مكسورة. أترجم "العميل غير راضٍ عن التوقيت" إلى "الجدولة تحتاج 30 دقيقة buffer". CX يعطي العمليات الإشارة قبل الأزمة — لا بعدها.</div>
+  </div>
+  <div class="dept-card d3">
+    <div class="dept-icon">💼</div>
+    <div class="dept-title">المبيعات والحجز</div>
+    <div class="dept-text">أشارك بيانات: أي خدمة أعلى تكرار، أي مدينة أعلى churn، من يحتاج مكالمة ومن يكفيه واتساب. النظام التنبؤي يحجز الخدمة القادمة قبل أن يفكر فيها العميل.</div>
+  </div>
+  <div class="dept-card d4">
+    <div class="dept-icon">📊</div>
+    <div class="dept-title">القيادة والمستثمرون</div>
+    <div class="dept-text">تقرير شهري: retention rate، NPS trend، repeat booking%، top friction points. شركة مُدرجة في نوما تحتاج هذه الأرقام — هي الفرق بين "نعتقد أن العملاء راضون" و"نُثبت ذلك بالبيانات".</div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ 8: 90 DAYS ══════════════════ -->
+
+<div class="section section--white" id="s8">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-titles">
+        <div class="sec-label">خطة التنفيذ</div>
+        <div class="sec-title">ماذا يحدث في أول 90 يوماً؟</div>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+```
+<div class="days-wrap">
+  <div class="day-col">
+    <div class="day-head d1-head">
+      <div class="day-icon">🎧</div>
+      <div class="day-period">اليوم ١ – ٣٠</div>
+      <div class="day-mode">استماع</div>
+    </div>
+    <div class="day-body">
+      <div class="day-item"><div class="day-bullet b1">١</div>خريطة رحلة العميل الكاملة من أول تواصل حتى ما بعد الخدمة</div>
+      <div class="day-item"><div class="day-bullet b1">٢</div>أول استبيان NPS عبر واتساب — baseline حقيقي في 30 يوماً</div>
+      <div class="day-item"><div class="day-bullet b1">٣</div>تحليل 6 أشهر من تعليقات إنستغرام — 302K فرصة بيانات</div>
+      <div class="day-item"><div class="day-bullet b1">٤</div>تحديد 3 نقاط احتكاك رئيسية بالبيانات لا بالافتراضات</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-head d2-head">
+      <div class="day-icon">🔧</div>
+      <div class="day-period">اليوم ٣١ – ٦٠</div>
+      <div class="day-mode">إصلاح</div>
+    </div>
+    <div class="day-body">
+      <div class="day-item"><div class="day-bullet b2">١</div>متابعة تلقائية 24 ساعة بعد كل خدمة — إنهاء الصمت</div>
+      <div class="day-item"><div class="day-bullet b2">٢</div>رسالة upsell ذكية بناءً على تاريخ العميل وموسمه</div>
+      <div class="day-item"><div class="day-bullet b2">٣</div>أول dashboard لصحة العملاء — مشترك مع التسويق والعمليات</div>
+      <div class="day-item"><div class="day-bullet b2">٤</div>بروتوكول الزيارة — تحويله إلى معيار قابل للقياس</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-head d3-head">
+      <div class="day-icon">🚀</div>
+      <div class="day-period">اليوم ٦١ – ٩٠</div>
+      <div class="day-mode">بناء</div>
+    </div>
+    <div class="day-body">
+      <div class="day-item"><div class="day-bullet b3">١</div>برنامج الإحالة يعمل: "رشّح صديقاً واحصل على خصم"</div>
+      <div class="day-item"><div class="day-bullet b3">٢</div>أول QBR مع القيادة: NPS، نقاط التسرب، الخطة القادمة</div>
+      <div class="day-item"><div class="day-bullet b3">٣</div>استراتيجية Clean-Tok — تفعيل العملاء الراضين كسفراء</div>
+      <div class="day-item"><div class="day-bullet b3">٤</div>نموذج CX قابل للتوسع على كل المدن الـ 25</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════ FINAL ══════════════════ -->
+
+<div class="final-section">
+  <div class="final-inner">
+    <div class="final-mark">"</div>
+    <div class="final-quote">
+      لستُ هنا لإدارة شكاوى.<br>
+      أنا هنا لأحوِّل <em>250,000 عميل راضٍ</em><br>
+      إلى محرك نمو يُغني عن الإعلان.
+    </div>
+    <div class="final-divider"></div>
+    <div class="final-name">سلطان القحطاني</div>
+    <div class="final-author">
+      CCXP® Certified &nbsp;·&nbsp; 7+ سنوات في CX &nbsp;·&nbsp; Amazon · LG · Alaan · Zid<br>
+      +966 59 906 1969 &nbsp;·&nbsp; SultanFq.career@gmail.com
+    </div>
+    <div class="final-tags">
+      <span class="final-tag">Customer Experience</span>
+      <span class="final-tag">Retention Strategy</span>
+      <span class="final-tag">CAC Reduction</span>
+      <span class="final-tag">LTV Growth</span>
+      <span class="final-tag">Saudi Market Expert</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// Scroll reveal
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), 80);
+    }
+  });
+}, { threshold: 0.08 });
+sections.forEach(s => observer.observe(s));
+
+// Counter animation
+function animateCounters() {
+  document.querySelectorAll('.m-num').forEach(el => {
+    const text = el.textContent;
+    el.style.opacity = '0';
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.5s';
+      el.style.opacity = '1';
+    }, 300);
+  });
+}
+animateCounters();
+</script>
 
 </body>
 </html>
